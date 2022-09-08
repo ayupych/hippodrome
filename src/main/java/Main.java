@@ -4,7 +4,7 @@ import java.util.concurrent.TimeUnit;
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        List<Hor se> horses = List.of(
+        List<Horse> horses = List.of(
                 new Horse("Буцефал", 2.4),
                 new Horse("Туз Пик", 2.5),
                 new Horse("Зефир", 2.6),
