@@ -98,11 +98,12 @@ public class HorseTest {
     }
 
     @Test
-    public void moveUsesGetRandom() {
+    public void moveTest() {
         try (MockedStatic<Horse> mockedStatic = mockStatic(Horse.class)) {
-            new Horse("horse", 1, 1);
+            new Horse("horse", 1, 1).move();
             mockedStatic.verify(() -> Horse.getRandomDouble(0.2, 0.9));
 
         }
     }
+
 }
