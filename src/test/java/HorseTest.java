@@ -100,9 +100,21 @@ public class HorseTest {
     @Test
     public void moveUsesGetRandom() {
         try (MockedStatic<Horse> mockedStatic = mockStatic(Horse.class)) {
-            new Horse("horse", 1, 1);
+            new Horse("horse", 1, 1).move();
             mockedStatic.verify(() -> Horse.getRandomDouble(0.2, 0.9));
 
         }
     }
+
+    @ParameterizedTest
+    @ValueSource(doubles = {0.1, 0.2, 0.5, 0.9, 999.999, 0.0})
+    void moveTest(double random) {
+        try (MockedStatic<Horse> mockedStatic = mockStatic(Horse.class)) {
+            Horse horse = new Horse("name", 10, 100);
+            mockedStatic.when(() -> Horse.getRandomDouble(0.2, 0.9)).thenReturn(random);
+            horse.move();
+            assertEquals(100 + 10 * random, horse.getDistance());
+        }
+    }
+
 }
